@@ -1,0 +1,528 @@
+@import url(https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Inter:wght@100..900&family=Oswald:wght@200..700&display=swap); 
+
+:root {
+    --black: #000000;
+    --white: #FFFBF5;
+    --lightred: #fa4454;
+    --medred: #dc3d4b; 
+    --deepred: #53212B;
+    --deepblue: #191b2b; 
+    --medblue: #3c4b66; 
+    --lightgrey: #A39699;
+    --darkgrey: #3b383A; 
+    --beige: #F4EEE1;
+}
+
+* {
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+}
+body {
+    font-family: "Arimo", "Oswald";
+    background-color: var(--white);
+}
+
+/* logo  */
+.logo {
+    width: 6vw;
+    margin: 10px; 
+} 
+
+header {
+    display: flex; 
+    flex-direction: row; 
+    /* justify-content: space-between; */
+    justify-content: flex-start;
+    height: 90px;
+    align-items: center;
+    font-size: 32px;
+    padding:1rem;
+    background-color: var(--darkgrey);
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    padding: 2px; 
+    font-size: 1.5rem;
+    background-color: var(--darkgrey);
+    font-family: 'Arimo';
+    font-weight: 700;
+}
+
+
+.nav .div {
+    display: flex;
+    align-items: center;
+    padding: 0.6em;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+    margin: 0px;
+    padding: 0px;
+    background: var(--blue);
+    list-style-type: none;
+    position: relative;
+    color: var(--white)
+    
+}
+
+
+ul li a {
+    padding: 15px;
+    color: var(--white);
+    text-decoration: none;
+    display: block;
+}
+
+ul ul {
+    position: absolute;
+    min-width: auto;
+    background: var(--black);
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+}
+
+ul li:hover ul {
+    display: block;
+    z-index: 40;
+}
+
+/* Styles for a hamburger menu icon, setting its appearance, width, and defining styles for its three lines. */
+#hamburger {
+    position: relative;
+    display: none;
+    width: 35px;
+    appearance: none; 
+    background: none;  
+    outline: none; 
+    cursor: pointer;
+    z-index: 10; 
+}
+
+#hamburger span {
+    display: block;
+    position: absolute;
+    height: 6px;
+    width: 100%;
+    background: var(--white);
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: 0.25s ease-in-out;
+    -moz-transition: 0.25s ease-in-out;
+    -o-transition: 0.25s ease-in-out;
+    transition: 0.25s ease-in-out;
+  }
+
+#hamburger .bar #hamburger:after, #hamburger:before {
+    content: '';
+    display: block; 
+    width: 100%;
+    height: 5px; 
+    background-color: var(--white);
+    margin: 6px 0px;
+    transition: 0.4s; 
+}
+/* Styles for the active state of the hamburger menu, including transformations for a close icon effect. */
+#hamburger.is-active:before {
+    transform: rotate(-45deg) translate(-8px, 6px);
+}
+
+#hamburger.is-active:after {
+    transform: rotate(45deg) translate(-8px, -7px);
+}
+
+#hamburger.is-active .bar {
+    opacity: 0;
+}
+
+.banner_container {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url("../images/Valorantt.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 600px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    /* justify-content: end; */
+    justify-content: center;
+    padding: 1rem;
+    /*trying this */
+    flex-direction: column; 
+    margin-bottom: 3rem;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bannerimage {
+    margin-bottom: 20px;
+    /* display: flex;
+    justify-content: center; */
+}
+
+.bannertext  {
+    /* flex-basis: 50%; */
+    /*try this*/
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p {
+    color: var(--white);
+    font-family: 'Inter';
+    font-weight: 700;
+    /*try this */
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+
+button.herobutton {
+    background-color: var(--lightred); 
+    /* border: 0; */
+    border: solid 3px var(--lightred);
+    cursor: pointer;
+    padding: 1rem;
+    text-align: center;
+    color: var(--white);
+    transition: #fff 0.3s; /* Add transition for smooth color change */
+    /*trying this*/
+    /* margin: 1rem; */
+    font-family: 'Arimo';
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 100rem; 
+}
+
+
+
+button.herobutton:hover {
+    background-color: var(--black); /* Change button color on hover */
+    border: solid 3px var(--black);
+} 
+
+
+.leading-bigtext {
+    color: var(--medred);
+    font-family: 'Oswald';
+    font-size: 4rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+    font-style: bold;
+}
+
+.card_container {
+    display:flex; 
+    gap:60px; 
+    align-content: space-between;
+    /* ASK ABOUT THIS WIDTH IT WORKS WITHOUT WIDTH IN THE RESPONSIVE, BUT THE IMAGE IS NOT CENTERED.  */
+    width: 1100px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.border-trl-radius {
+    width:360px;
+    height: 240px; 
+    margin: 0 auto;
+} 
+
+/*Card Style */
+
+.card_wrapper{
+    display: grid;
+    grid-template-rows: 300px auto;
+    box-shadow:
+    0 1px 3px rgba(0,0,0,0.12),
+    0 1px 2px rgba(0,0,0,0.12);
+}
+
+.card_imageborder-tlr-radius {
+    display: flex; 
+    /* align-items: flex-end; */
+    justify-content: center;
+    align-items: center;
+}
+
+
+h3 {
+    line-height: 1.2;
+    margin-top: 1rem;
+    margin-bottom: 1.6rem;
+    text-align: center;
+    font-family: 'Inter';
+    font-weight: 800;
+    font-style: bold;
+    font-size: 1.6em;
+    color: var(--deepblue);
+}
+    
+/* .card_article p {
+    color: var(--darkgrey);
+    font-family: 'Inter';
+    font-weight: 400;
+    line-height: 1.2rem;
+} */
+
+.card_contentcard_padding p {
+    color: var(--darkgrey);
+    font-family: 'Inter';
+    font-weight: 400;
+    line-height: 1.2rem;
+}
+/* card action */
+
+.card_link a{
+	display: inline-block;
+	vertical-align: middle;
+    text-decoration: none;
+    color:var(--medred);
+}
+
+
+footer{ 
+    display: flex;
+    justify-content: center;
+    background: var(--medblue); 
+    margin-top: 50px;
+  }
+
+  
+  /* Media query for responsive design, adjusting styles for screens with a maximum width of 768 pixels. */
+@media only screen and (max-width: 768px) {
+    
+    .main-menu {
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    background: var(--medblue);
+    right: 0;
+    list-style-type: none;
+    position: absolute;
+    color: var(--white);
+    flex-direction: column;
+    z-index: 99999;
+    width: 50%;
+    top: 135px;
+    }
+    
+    #hamburger {
+        display: block;
+        }
+   
+    
+    .menu a:hover {
+        color: var(--terracotta); 
+    }
+    
+    .menu a {
+        transition: color 0.3s ease;
+    }
+    
+    #hamburger:hover {
+        background-color: var(--terracotta); 
+    }
+    
+    #hamburger {
+        transition: background-color 0.3s ease;
+    }
+    
+    .card_container {
+        flex-direction: row; /* Switch to row layout */
+        flex-wrap: wrap; /* Allow cards to wrap */
+       /* justify-content: space-between;  Add space between cards */
+    }
+
+
+    .card_contentcard_padding {
+        padding: 20px; /* Add padding to the content wrapper */
+        text-align: left; /* Center-align the content */
+        margin-top: 0; 
+    
+
+    }
+
+    .card_container {
+        width:100%;
+    }
+
+    .card_contentcard_padding p {
+        text-align: left; 
+
+    }
+
+    .card_contentcard_padding h3 {
+        text-align: left; 
+    }
+
+    .card_article h3 {
+        margin-top: 0; /* Remove top margin for the heading */
+    }
+}
+    
+.smallTxt{
+    color: #000000;
+    margin-top: 1.2em;
+}
+.newsletter-heading{
+    margin-top: 1.5em;
+}
+.newsletterSection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+.open-button{
+    background-color: var(--lightred); 
+    border: solid 3px var(--lightred);
+    cursor: pointer;
+    padding: 1rem;
+    text-align: center;
+    color: var(--white);
+    transition: #fff 0.3s;
+    font-family: 'Arimo';
+    font-weight: 700;
+    font-size: 1.5rem;
+    border-radius: 100rem; 
+    margin-bottom: 1rem;
+    margin-left: 5rem;
+    margin-top: 2em;
+}
+/* Add your existing CSS here */
+
+/* Overlay styling */
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 1; /* Sit on top */
+}
+
+/* Form styling */
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+    z-index: 1; /* Sit on top */
+}
+
+/* Form styling */
+.form-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; /* Sit on top of the overlay */
+    padding-right: 20px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+/* Add other form-container styles here */
+.form-container {
+    display: flex;
+    max-width: 925px; /* Adjust width as needed */
+    margin: auto; /* Center horizontally */
+}
+
+.popup-content {
+    display: flex;
+    align-items: center;
+}
+
+.popup-image {
+    width: 350px; /* Adjust image width as needed */
+    margin-right: 20px;
+}
+
+.popup-text {
+    flex: 1; /* Take remaining space */
+}
+
+.popup-text h3 {
+    margin-top: 0;
+}
+
+.form-container input[type=text] {
+    width: 65%; /* Fill the available width */
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px; /* Added margin bottom */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-container .btn {
+    width: 30%; /* Fill the available width */
+    padding: 10px;
+    background-color: #d13639;
+    margin-top: 10px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    float: right;
+}
+
+.form-container .btn img {
+    width: 20px;
+    height: 20px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 24px;
+    cursor: pointer;
+}
+.form-title{
+    font-family: "Arimo", "Oswald";
+    color: #000000;
+    float: left;
+    font-weight: 900;
+    font-size: 3em;
+}
+h2{
+    font-size: 1em;
+}
+.spacer{
+    height: 6em;
+}
+input{
+    width: 200px;
+}

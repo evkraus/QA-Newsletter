@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arimo:ital,wght@0,400..700;1,400..700&family=Inter:wght@100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet" type="text/css">
+    <meta name="author" content="Roseann Duarte-Tampos A00998589"/>
+    <link rel="icon" type="image/x-icon" href="">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="globals.css">
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+        }
+      
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
+
+        function validateEmail() {
+            const emailInput = document.querySelector('input[name="email"]');
+            const email = emailInput.value;
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.(com|ca|net|org|edu|gov|mil|biz|info|mobi|name|aero|jobs|museum)$/;
+            const specialCharPattern = /[!#$%^&*(),?":{}|<>]/g;
+
+            if (!email.includes('@') || !emailPattern.test(email)) {
+                alert('Please enter a valid email address.');
+                return false;
+            } else if (specialCharPattern.test(email)) {
+                alert('Email may not contain special characters.');
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+
+            if (!validateEmail()) {
+                return;
+            }
+
+            const formData = new FormData(event.target);
+
+            fetch('subscribe.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text()) // Read the response as text first
+            .then(text => {
+                try {
+                    const data = JSON.parse(text); // Attempt to parse the text as JSON
+                    alert(data.message);
+                    if (data.status === "success") {
+                        document.getElementById("myForm").reset();
+                        closeForm();
+                    }
+                } catch (error) {
+                    alert("Invalid JSON response: " + text); // Provide the response text for debugging
+                    console.error("Error parsing JSON:", error);
+                }
+            })
+            .catch(error => {
+                alert("An error occurred. Please try again later. Error: " + error.message);
+                console.error("Error:", error);
+            });
+        }
+    </script>
+</head>
+<body id="body">
+    <div id="overlay"></div>
+    <header>
+        <div class="logo"> 
+            <svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" fill="#D13639" viewBox="0 0 110 35"><path d="M17.8 31.7l-1.6-4.1 15.4.8-.7 6.6zM21.5 0L0 10.2l3.3 15.3h4.4l-.7-11 .6-.2 2.7 11.2h4.5l-.1-13.4.6-.2 2.3 13.6h4.9l1.1-16.1.7-.3 1.2 16.4h6.3l2.3-22.4zm84.9 31.2l-6.1-1v-.8l5.9-.2-.1-1.5h-7.5l-.4 3.8 6.2 1.1v.7l-6.5.3-.2 1.4h9.1l-.4-3.8zM48 30.6l-.1 1.4 2.2.1v1.4l-4.7-.1.2-4.1 6.4-.1-.1-1.5h-8.3l-.7 7.3h9.4l-.2-4.5-4.1.1zm39.9 2.7V32l4.4-.1v-1.4l-4.5-.1v-1.3l5.9-.1v-1.5h-8l-.2 7.5h8.4l-.1-1.5-5.9-.2zM81.5 35l-.8-7.4h-2.1l-3.1 3.5-3.1-3.5h-2.1l-.7 7.4h2.5l.2-4.8 3.2 3.3 3.2-3.3.2 4.8zM70.9.5h-5l-.4 22.9h6zm20.4 0H75.7l-.6 22.9h17.3L91.3.5zm-4.8 17.9l-5.5.2-.3-13.5 5.9-.2v13.5zm-19.4-2.7l.1-1.5h-4.8l.3-3.2 5.5-.2.1-1.4-7.9.3-.6 7.6zM61.6 0H55l-4.1 29.5h2.5l1-6.6h6.5l1 6.6h2.5zm-8.2 17.4l2.8-10.7h.1l2.7 10.7zM17.8 31.7l-1.6-4.1 15.4.8-.7 6.6zM21.5 0L0 10.2l3.3 15.3h4.4l-.7-11 .6-.2 2.7 11.2h4.5l-.1-13.4.6-.2 2.3 13.6h4.9l1.1-16.1.7-.3 1.2 16.4h6.3l2.3-22.4zm84.9 31.2l-6.1-1v-.8l5.9-.2-.1-1.5h-7.5l-.4 3.8 6.2 1.1v.7l-6.5.3-.2 1.4h9.1l-.4-3.8zM48 30.6l-.1 1.4 2.2.1v1.4l-4.7-.1.2-4.1 6.4-.1-.1-1.5h-8.3l-.7 7.3h9.4l-.2-4.5-4.1.1zm39.9 2.7V32l4.4-.1v-1.4l-4.5-.1v-1.3l5.9-.1v-1.5h-8l-.2 7.5h8.4l-.1-1.5-5.9-.2zM81.5 35l-.8-7.4h-2.1l-3.1 3.5-3.1-3.5h-2.1l-.7 7.4h2.5l.2-4.8 3.2 3.3 3.2-3.3.2 4.8zM70.9.5h-5l-.4 22.9h6zm20.4 0H75.7l-.6 22.9h17.3L91.3.5zm-4.8 17.9l-5.5.2-.3-13.5 5.9-.2v13.5zm-19.4-2.7l.1-1.5h-4.8l.3-3.2 5.5-.2.1-1.4-7.9.3-.6 7.6zM61.6 0H55l-4.1 29.5h2.5l1-6.6h6.5l1 6.6h2.5zm-8.2 17.4l2.8-10.7h.1l2.7 10.7z"></path></svg>
+        </div>
+        <nav class="nav_links">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+    <div class="banner_container">
+        <div class="bannerimage">
+            <img src="images/valorant_banner.png" alt="heroimage" class="heroimage"></div>
+            <p>Valorant is a team-based first-person tactical hero shooter set in the near future. <br>Players play as one of a set of Agents based on several countries around the world </p>
+            <button class="herobutton" type="button">Play For Free </button>
+        </div>
+    </div>
+
+    <main>
+        <section class="leading">
+            <h2 class="leading-bigtext">Latest News</h2>
+        </section>
+        <div class="card_container">
+            <div class="card_wrapper">
+                <div class="card_imageborder-tlr-radius1">
+                    <img src="images/omen.jpg" alt="image" class="border-trl-radius ">
+                </div>
+                <div class="card_contentcard_padding">
+                    <h3>
+                        Omen 
+                    </h3>
+                    <p>Omen is the first radiant to join the Valorant protocol, and has a mysterious and dark past. Omen's character is an unknown accident that occurred in his past, resulting in him being 'ripped apart' and transformed from a human into his current state.</p>
+                </div>
+                <div class="card_link">
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+            <div class="card_wrapper">
+                <div class="card_imageborder-tlr-radius2">
+                    <img src="images/killjoy-valorant-art (1).jpg" alt="image" class="border-trl-radius">
+                </div>
+                <div class="card_contentcard_padding">
+                    <h3>
+                        Killjoy 
+                    </h3>
+                    <p>Killjoy is the fourth Agent to join the Valorant protocol. Originating from Germany, she uses her self-made inventions to assist her in battle. The genius of Germany. Killjoy secures the battlefield with ease using her arsenal of invention</p>
+                </div>
+                <div class="card_link">
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+            <div class="card_wrapper">
+                <div class="card_imageborder-tlr-radius3">
+                    <img src="images/sage.jpg" alt="image" class="border-trl-radius">
+                </div>
+                <div class="card_contentcard_padding">
+                    <h3>
+                        Sage 
+                    </h3>
+                    <p>Originating from the Shaanxi province in China, Sage is a Radiant healer.She is the seventh agent to join the Valorant protocol. Sage has a kind and compassionate personality, considered by some to be almost 'mother-like'.</p>
+                </div>
+                <div class="card_link">
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN SUB CTA -->
+        <div class="newsletterSection">
+            <h2 class="newsletter-heading">Subscribe to our Newsletter <br> & stay up to date</h2>
+            <button class="open-button" onclick="openForm()">Subscribe</button>
+
+            <div class="form-popup" id="myForm">
+                <form class="form-container" onsubmit="submitForm(event)">
+                    <div class="popup-content">
+                        <img src="images/newsletter-img.jpg" alt="Newsletter Image" class="popup-image">
+                        <div class="popup-text">
+                            <h3>Subscribe to our newsletter</h3>
+                            <h2>Stay updated with our latest news and offers, straight to your inbox!</h2>
+                            <input type="text" placeholder="Enter Email" name="email" required>
+                            <button type="submit" name="subscribe" class="btn">Subscribe</button>
+                        </div>
+                    </div>
+                    <button type="button" class="close-button" onclick="closeForm()">×</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        &copy;Roseann Duarte-Tampos 2024
+    </footer>
+</body>
+</html>
